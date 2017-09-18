@@ -18,6 +18,13 @@ import { HomePage, WalkthroughPage } from '../pages';
 // Components
 import { PreloadImage, BackgroundImage, NewItemComponent, ShowHideContainer, ShowHideInput, ColorRadio, CounterInput, Rating } from "../components";
 
+// Firebase
+import { environment } from "./app.environment"; 
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireModule } from "angularfire2";
+import { FirebaseProvider } from "./../providers/firebase/firebase";
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -60,7 +67,8 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    FirebaseProvider
   ]
 })
 export class AppModule { }
