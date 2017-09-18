@@ -1,7 +1,7 @@
 <ion-header class="walkthrough-header">
     <ion-toolbar>
       <ion-buttons end>
-        <button ion-button class="skip-button" (click)="skipIntro()" [hidden]="lastSlide">Skip</button>
+        <button ion-button class="skip-button" (click)="skipIntro()" [hidden]="lastSlide">{{ 'walkthrough.skip' | translate }}</button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -14,9 +14,9 @@
             <preload-image [ratio]="{w:1, h:1}" src="./assets/images/logo_white.png" alt="app logo" title="ion2FullApp"></preload-image>
           </ion-col>
         </ion-row>
-        <h2 class="main-title">Welcome!</h2>
+        <h2 class="main-title">{{ 'walkthrough.slide-1.main-title' | translate }}</h2>
         <p class="intro-text">
-          This is the new <b>Ionic 2</b> Full App template
+          {{ 'walkthrough.slide-1.intro-text' | translate }}
         </p>
       </ion-slide>
       <ion-slide class="slide-2">
@@ -25,12 +25,12 @@
             <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-2-img.png" alt="slide 2 img" title="ion2FullApp"></preload-image>
           </ion-col>
         </ion-row>
-        <h2 class="main-title">Wake up!</h2>
+        <h2 class="main-title">{{ 'walkthrough.slide-2.main-title' | translate }}</h2>
         <p class="intro-text">
-          We should get started.
+          {{ 'walkthrough.slide-2.intro-text-1' | translate }}
         </p>
         <p class="intro-text">
-          Here we have a beautiful walkthrough
+          {{ 'walkthrough.slide-2.intro-text-2' | translate }}
         </p>
       </ion-slide>
       <ion-slide class="slide-3">
@@ -39,9 +39,9 @@
             <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-3-img.png" alt="slide 3 img" title="ion2FullApp"></preload-image>
           </ion-col>
         </ion-row>
-        <h2 class="main-title">Get ready!</h2>
+        <h2 class="main-title">{{ 'walkthrough.slide-3.main-title' | translate }}</h2>
         <p class="intro-text">
-          Soon your app will look and feel awesome!
+          {{ 'walkthrough.slide-3.intro-text' | translate }}
         </p>
       </ion-slide>
       <ion-slide class="slide-4">
@@ -50,16 +50,16 @@
             <preload-image [ratio]="{w:1, h:1}" src="./assets/images/slide-4-img.png" alt="slide 4 img" title="ion2FullApp"></preload-image>
           </ion-col>
         </ion-row>
-        <h2 class="main-title">Almost done!</h2>
+        <h2 class="main-title">{{ 'walkthrough.slide-4.main-title' | translate }}</h2>
         <p class="intro-text">
-          Log in to your account.
+          {{ 'walkthrough.slide-4.intro-text-1' | translate }}
         </p>
         <p class="intro-text">
-          We are ready to rock!
+          {{ 'walkthrough.slide-4.intro-text-2' | translate }}
         </p>
         <div class="button-bar">
-          <button ion-button primary (click)="goToLogin()">Log in</button>
-          <button ion-button primary (click)="goToSignup()">Sign up</button>
+          <button ion-button primary (click)="goToLogin()">{{ 'walkthrough.slide-4.log-in-button' | translate }}</button>
+          <button ion-button primary (click)="goToSignup()">{{ 'walkthrough.slide-4.sign-up-button' | translate }}</button>
         </div>
       </ion-slide>
     </ion-slides>
