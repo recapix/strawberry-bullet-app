@@ -1,3 +1,26 @@
 {
-    "hello" : "Olá"
-}
+    "walkthrough": {
+      "skip": "Skip",
+      "slide-1": {
+        "main-title": "Welcome!",
+        "intro-text": "This is the new Ionic 2 Full App template"
+      },
+      "slide-2": {
+        "main-title": "Wake up!",
+        "intro-text-1": "We should get started.",
+        "intro-text-2": "Here we have a beautiful walkthrough"
+      },
+      "slide-3": {
+        "main-title": "Get ready!",
+        "intro-text": "Soon your app will look and feel awesome!"
+      },
+      "slide-4": {
+        "main-title": "Almost done!",
+        "intro-text-1": "Log in to your account.",
+        "intro-text-2": "We are ready to rock!",
+        "log-in-button": "Log in",
+        "sign-up-button": "Sign up"
+      }
+    }
+  }
+  

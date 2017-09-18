@@ -31,7 +31,7 @@
     "@ngx-translate/http-loader": "^2.0.0",
     "@types/googlemaps": "^3.25.38",
     "bourbon": "^4.2.7",
-    "call-number": "https://github.com/Rohfosho/CordovaCallNumberPlugin.git",
+    "call-number": "https://github.com/Rohfosho/CordovaCall   NumberPlugin.git",
     "cordova-android": "~5.1.1",
     "cordova-ios": "~4.1.1",
     "cordova-plugin-console": "~1.0.4",
