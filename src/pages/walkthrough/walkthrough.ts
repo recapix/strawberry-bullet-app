@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, AlertController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'walkthrough-page',
@@ -11,8 +12,8 @@ export class WalkthroughPage {
 
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController) {
-
+  constructor(public nav: NavController, public translate: TranslateService) {
+    translate.setDefaultLang('en');
   }
 
   skipIntro() {
