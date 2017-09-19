@@ -1,0 +1,59 @@
+{
+  "walkthrough": {
+    "skip": "Skip",
+    "slide-1": {
+      "main-title": "Welcome!",
+      "intro-text": "This is the new Ionic 2 Full App template"
+    },
+    "slide-2": {
+      "main-title": "Wake up!",
+      "intro-text-1": "We should get started.",
+      "intro-text-2": "Here we have a beautiful walkthrough"
+    },
+    "slide-3": {
+      "main-title": "Get ready!",
+      "intro-text": "Soon your app will look and feel awesome!"
+    },
+    "slide-4": {
+      "main-title": "Almost done!",
+      "intro-text-1": "Log in to your account.",
+      "intro-text-2": "We are ready to rock!",
+      "log-in-button": "Log in",
+      "sign-up-button": "Sign up"
+    }
+  },
+  "login": {
+    "title": "Sign in",
+    "email": "E-mail",
+    "password": "Password",
+    "log-in-button": "Log in",
+    "forgot-password": "Forgot Password?",
+    "sign-up": "Sign up!",
+    "log-in-with-facebook": "Log in with Facebook",
+    "or": "Or"
+  },
+  "forgot-password": {
+    "title": "Forgot Password?",
+    "auth-title": "Recover your password",
+    "recover-message": "Please enter your email address and we'll send you an email to reset your password.",
+    "email": "E-mail",
+    "recovery-password": "Recovery Password"
+  },
+  "sign-up": {
+    "title": "Sign up",
+    "create-an-account": "Create an account",
+    "email": "E-mail",
+    "password": "Password",
+    "confirm-password": "Confirm password",
+    "sign-up": "Sign up",
+    "or": "Or",
+    "sign-up-with-facebook": "Sign up with Facebook",
+    "privacy-policy": "Privacy policy",
+    "and": "and",
+    "terms-of-use": "Terms of use",
+    "by-creating-an-account-you-agree-to-our" : "By creating an account you agree to our"
+  },
+  "home":{
+    "title" :"Codename:Corn"
+  }
+}

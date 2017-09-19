@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides } from 'ionic-angular';
+import { NavController, Slides, AlertController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
+
+import { LoginPage, SignupPage } from "../";
 
 @Component({
   selector: 'walkthrough-page',
@@ -11,8 +14,8 @@ export class WalkthroughPage {
 
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController) {
-
+  constructor(public nav: NavController, public translate: TranslateService) {
+    translate.setDefaultLang('en');
   }
 
   skipIntro() {
@@ -30,10 +33,10 @@ export class WalkthroughPage {
   }
 
   goToLogin() {
-    // this.nav.push(LoginPage);
+     this.nav.push(LoginPage);
   }
 
   goToSignup() {
-    // this.nav.push(SignupPage);
+     this.nav.push(SignupPage);
   }
 }
