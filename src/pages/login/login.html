@@ -1,0 +1,31 @@
+<ion-header class="login-header auth-header">
+  <ion-navbar>
+    <ion-title>{{'login.title' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content auth-content">
+  <form class="login-form auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
+    <ion-item>
+      <ion-input type="email" [placeholder]="'login.email' | translate" formControlName="email"></ion-input>
+    </ion-item>
+    <show-hide-container>
+      <ion-item>
+        <ion-input type="password" [placeholder]="'login.password' | translate" formControlName="password" show-hide-input></ion-input>
+      </ion-item>
+    </show-hide-container>
+    <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!login.valid">{{ 'login.log-in-button' | translate }}</button>
+  </form>
+  <ion-row class="alt-options">
+    <ion-col no-padding width-50>
+      <button ion-button block clear class="forgot-button" (click)="goToForgotPassword()">{{ 'login.forgot-password' | translate }}</button>
+    </ion-col>
+    <ion-col no-padding width-50>
+      <button ion-button block clear class="signup-button" (click)="goToSignup()">{{ 'login.sign-up' | translate }}</button>
+    </ion-col>
+  </ion-row>
+  <p class="auth-divider">
+    {{ 'login.or' | translate }}
+  </p>
+  <button ion-button block class="facebook-auth-button" (click)="doFacebookLogin()">{{ 'login.log-in-with-facebook' | translate }}</button>
+</ion-content>

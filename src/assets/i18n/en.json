@@ -21,5 +21,39 @@
       "log-in-button": "Log in",
       "sign-up-button": "Sign up"
     }
+  },
+  "login": {
+    "title": "Sign in",
+    "email": "E-mail",
+    "password": "Password",
+    "log-in-button": "Log in",
+    "forgot-password": "Forgot Password?",
+    "sign-up": "Sign up!",
+    "log-in-with-facebook": "Log in with Facebook",
+    "or": "Or"
+  },
+  "forgot-password": {
+    "title": "Forgot Password?",
+    "auth-title": "Recover your password",
+    "recover-message": "Please enter your email address and we'll send you an email to reset your password.",
+    "email": "E-mail",
+    "recovery-password": "Recovery Password"
+  },
+  "sign-up": {
+    "title": "Sign up",
+    "create-an-account": "Create an account",
+    "email": "E-mail",
+    "password": "Password",
+    "confirm-password": "Confirm password",
+    "sign-up": "Sign up",
+    "or": "Or",
+    "sign-up-with-facebook": "Sign up with Facebook",
+    "privacy-policy": "Privacy policy",
+    "and": "and",
+    "terms-of-use": "Terms of use",
+    "by-creating-an-account-you-agree-to-our" : "By creating an account you agree to our"
+  },
+  "home":{
+    "title" :"Codename:Corn"
   }
 }

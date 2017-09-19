@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides, AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoginPage, SignupPage } from "../";
+
 @Component({
   selector: 'walkthrough-page',
   templateUrl: 'walkthrough.html'
@@ -31,10 +33,10 @@ export class WalkthroughPage {
   }
 
   goToLogin() {
-    // this.nav.push(LoginPage);
+     this.nav.push(LoginPage);
   }
 
   goToSignup() {
-    // this.nav.push(SignupPage);
+     this.nav.push(SignupPage);
   }
 }
