@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, AlertController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { HomePage, PrivacyPolicyPage, TermsOfServicePage } from '../'
+import { TabsNavigationPage, PrivacyPolicyPage, TermsOfServicePage } from '../'
+import { AngularFireAuth } from 'angularfire2/auth';
+import { StorageService } from "../../services";
 
 @Component({
   selector: 'signup-page',
@@ -9,29 +11,47 @@ import { HomePage, PrivacyPolicyPage, TermsOfServicePage } from '../'
 })
 export class SignupPage {
   signup: FormGroup;
-  main_page: { component: any };
   loading: any;
+  main_page: { component: any };
 
   constructor(
     public nav: NavController,
     public modal: ModalController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public afAuth: AngularFireAuth,
+    public alertCtrl: AlertController,
+    private storage: StorageService
   ) {
-    this.main_page = { component: HomePage };
-
+    this.main_page = { component: TabsNavigationPage };
     this.signup = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      confirm_password: new FormControl('', Validators.required)
+      email: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required),
+      confirm_password: new FormControl("", Validators.required)
     });
   }
 
   doSignup() {
-    this.nav.setRoot(this.main_page.component);
+    this.showLoading();
+    this.afAuth.auth
+      .createUserWithEmailAndPassword(this.signup.value.email, this.signup.value.password)
+      .then((resolve) => {
+        this.storage.set("auth.user", { uid: resolve.uid, email: resolve.email }).then(() => {
+          this.closeLoading();
+          this.nav.setRoot(this.main_page.component);
+        });
+      })
+      .catch((e: any) => {
+        this.closeLoading();
+        let alert = this.alertCtrl.create({
+          title: 'Authentication error!',
+          subTitle: e.message,
+          buttons: ['Close']
+        });
+        alert.present();
+      });
   }
 
   doFacebookSignup() {
-
   }
 
   showTermsModal() {
@@ -42,5 +62,13 @@ export class SignupPage {
   showPrivacyModal() {
     let modal = this.modal.create(PrivacyPolicyPage);
     modal.present();
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+  }
+  closeLoading() {
+    this.loading.dismissAll();
   }
 }

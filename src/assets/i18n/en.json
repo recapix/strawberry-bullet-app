@@ -54,6 +54,15 @@
     "by-creating-an-account-you-agree-to-our" : "By creating an account you agree to our"
   },
   "home":{
-    "title" :"Codename:Corn"
+    "title" :"Home"
+  },
+  "profile" : {
+    "title" : "Profile"
+  },
+  "settings" : {
+    "title" : "Settings"
+  },
+  "search" : {
+    "title" : "Search"
   }
 }

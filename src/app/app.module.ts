@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { NativeStorage } from "@ionic-native/native-storage";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -13,7 +14,19 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MyApp } from './app.component';
 
 // Pages
-import { ForgotPasswordPage, HomePage, LoginPage, PrivacyPolicyPage, SignupPage, WalkthroughPage, TermsOfServicePage } from '../pages';
+import {
+  ForgotPasswordPage,
+  HomePage,
+  LoginPage,
+  PrivacyPolicyPage,
+  ProfilePage,
+  SearchPage,
+  SettingsPage,
+  SignupPage,
+  WalkthroughPage,
+  TabsNavigationPage,
+  TermsOfServicePage
+} from '../pages';
 
 // Components
 import { PreloadImage, BackgroundImage, NewItemComponent, ShowHideContainer, ShowHideInput, ColorRadio, CounterInput, Rating } from "../components";
@@ -24,6 +37,10 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireModule } from "angularfire2";
 import { FirebaseProvider } from "./../providers/firebase/firebase";
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+// Services
+import { ProfileService, StorageService } from "../services";
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,8 +55,12 @@ export function createTranslateLoader(http: HttpClient) {
     HomePage,
     LoginPage,
     PrivacyPolicyPage,
+    ProfilePage,
+    SearchPage,
+    SettingsPage,
     SignupPage,
     WalkthroughPage,
+    TabsNavigationPage,
     TermsOfServicePage,
     // Components
     PreloadImage,
@@ -61,7 +82,10 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,15 +94,22 @@ export function createTranslateLoader(http: HttpClient) {
     HomePage,
     LoginPage,
     PrivacyPolicyPage,
+    ProfilePage,
+    SearchPage,
+    SettingsPage,
     SignupPage,
     WalkthroughPage,
-    TermsOfServicePage,
+    TabsNavigationPage,
+    TermsOfServicePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    FirebaseProvider
+    FirebaseProvider,
+    ProfileService,
+    StorageService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

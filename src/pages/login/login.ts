@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NavController, LoadingController, Platform, AlertController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { StorageService } from "../../services";
 
- import { HomePage, SignupPage , ForgotPasswordPage} from '../';
+import { SignupPage, ForgotPasswordPage, TabsNavigationPage } from '../';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'login-page',
@@ -13,25 +15,63 @@ export class LoginPage {
   main_page: { component: any };
   loading: any;
 
-
   constructor(
+    private plt: Platform,
     public nav: NavController,
-    public loadingCtrl: LoadingController
+    public afAuth: AngularFireAuth,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    private storage: StorageService
   ) {
-    this.main_page = { component: HomePage };
+    this.main_page = { component: TabsNavigationPage };
 
-    this.login = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
-    });
+    if(!plt.is('cordova')) {
+      this.login = new FormGroup({
+        email: new FormControl('renan.leite@globo.com', Validators.required),
+        password: new FormControl('N2N6x6x4', Validators.required)
+      });
+    }else{
+      this.login = new FormGroup({
+        email: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required)
+      });
+    }   
   }
 
-  doLogin(){
-    this.nav.setRoot(this.main_page.component);
+  doLogin() {
+    this.showLoading();
+    this.afAuth.auth
+      .signInWithEmailAndPassword(this.login.value.email, this.login.value.password)
+      .then(resolve => {
+        this.storage.set("auth.user", { uid: resolve.uid, email: resolve.email }).then(() => {
+          this.closeLoading();
+          debugger;
+          this.nav.setRoot(this.main_page.component);
+        });
+      })
+      .catch((a: any) => {
+        this.closeLoading();
+        var msg = "";
+        switch (a.code) {
+          case "auth/user-not-found":
+            msg = "User not found";
+            break;
+          default:
+
+            break;
+        }
+        debugger;
+        let alert = this.alertCtrl.create({
+          title: 'Auth Error',
+          subTitle: msg,
+          buttons: ['Close']
+        });
+        alert.present();
+      });
   }
- 
+
   doFacebookLogin() {
-    
+
   }
 
   goToSignup() {
@@ -40,5 +80,17 @@ export class LoginPage {
 
   goToForgotPassword() {
     this.nav.push(ForgotPasswordPage);
+  }
+
+  ionViewDidEnter() {
+
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+  }
+  closeLoading() {
+    this.loading.dismissAll();
   }
 }
