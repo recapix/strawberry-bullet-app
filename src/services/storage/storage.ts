@@ -21,7 +21,7 @@ export class StorageService {
         }
     }
 
-    public get(key: string): Promise<{}> {
+    public get(key: string): Promise<any> {
         if (this.isDesenv) {
             return new Promise<any>((resolve, reject) => {
                 const item = this.storage ? this.storage.getItem(this.getKey(key)) : null;
@@ -38,7 +38,7 @@ export class StorageService {
         return this.nativeStorage.getItem(this.getKey(key));
     }
 
-    public set(key: string, value: any): Promise<{}> {
+    public set(key: string, value: any): Promise<any> {
         if (value === undefined) {
             value = null;
         }
@@ -58,7 +58,7 @@ export class StorageService {
         return this.nativeStorage.setItem(this.getKey(key), value);
     }
 
-    public remove(key: string): Promise<{}> {
+    public remove(key: string): Promise<any> {
         if (this.isDesenv) {
             return new Promise<any>((resolve, reject) => {
                 try {

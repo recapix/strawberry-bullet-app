@@ -45,7 +45,6 @@ export class LoginPage {
       .then(resolve => {
         this.storage.set("auth.user", { uid: resolve.uid, email: resolve.email }).then(() => {
           this.closeLoading();
-          debugger;
           this.nav.setRoot(this.main_page.component);
         });
       })

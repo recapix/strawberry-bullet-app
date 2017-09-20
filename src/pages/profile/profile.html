@@ -7,6 +7,12 @@
 </ion-header>
 
 <ion-content class="profile-content">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    
+
     <div class="user-details">
       <ion-row class="user-main-data-row">
         <ion-col no-padding width-33>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuController, SegmentButton, App, NavParams, LoadingController } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
-import { ProfileModel } from './profile.model';
-import { ProfileService } from '../../services';
+import { ProfileModel } from '../../models';
+import { ProfileService, StorageService } from '../../services';
 import 'rxjs/Rx';
 
 @Component({
@@ -19,7 +19,8 @@ export class ProfilePage {
     public app: App,
     public navParams: NavParams,
     public profileService: ProfileService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public storage: StorageService
   ) {
     this.display = "list";
 
@@ -27,16 +28,7 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    this.loading.present();
-    this.profileService
-      .getData()
-      .then(data => {
-        this.profile.user = data.user;
-        this.profile.following = data.following;
-        this.profile.followers = data.followers;
-        this.profile.posts = data.posts;
-        this.loading.dismiss();
-      });
+    this.updatePage();
   }
 
   goToFollowersList() {
@@ -46,6 +38,86 @@ export class ProfilePage {
   goToFollowingList() {
 
   }
+
+  updatePage() {
+    this.profile = new ProfileModel();
+    this.showLoading();
+    this.storage.get("auth.user")
+      .then(o => {
+
+        var UserPromisse = this.profileService.getProfileUser(o.uid)
+          .then(user => {
+            this.profile.user = user;
+          });
+
+        var FollowersPromisse = this.profileService.getProfileFollowers(o.uid)
+          .then(followers => {
+            this.profile.followers = followers;
+          });
+
+        var FollowingPromisse = this.profileService.getProfileFollowing(o.uid)
+          .then(following => {
+            this.profile.following = following;
+          });
+
+        var PostPromisse = this.profileService.getProfilePosts(o.uid)
+          .then(posts => {
+            this.profile.posts = posts;
+          });
+
+        Promise
+          .all([UserPromisse, FollowersPromisse, FollowingPromisse, PostPromisse])
+          .then(() => {
+            this.closeLoading();
+          });
+
+      })
+      .catch(error => {
+
+      });
+
+  }
+
+  doRefresh(refresher) {
+    this.profile = new ProfileModel();
+    this.showLoading();
+    this.storage.get("auth.user")
+      .then(o => {
+
+        var UserPromisse = this.profileService.getProfileUser(o.uid)
+          .then(user => {
+            this.profile.user = user;
+          });
+
+        var FollowersPromisse = this.profileService.getProfileFollowers(o.uid)
+          .then(followers => {
+            this.profile.followers = followers;
+          });
+
+        var FollowingPromisse = this.profileService.getProfileFollowing(o.uid)
+          .then(following => {
+            this.profile.following = following;
+          });
+
+        var PostPromisse = this.profileService.getProfilePosts(o.uid)
+          .then(posts => {
+            this.profile.posts = posts;
+          });
+
+        Promise
+          .all([UserPromisse, FollowersPromisse, FollowingPromisse, PostPromisse])
+          .then(() => {
+            this.closeLoading();
+            refresher.complete();
+          });
+
+      })
+      .catch(error => {
+
+      });
+
+  }
+
 
   goToSettings() {
     // close the menu when clicking a link from the menu
@@ -62,5 +134,14 @@ export class ProfilePage {
   }
 
   sharePost(post) {
+  }
+
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
+  }
+  closeLoading() {
+    this.loading.dismiss();
   }
 }
