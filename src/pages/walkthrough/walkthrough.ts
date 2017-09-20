@@ -14,8 +14,7 @@ export class WalkthroughPage {
 
   @ViewChild('slider') slider: Slides;
 
-  constructor(public nav: NavController, public translate: TranslateService) {
-    translate.setDefaultLang('en');
+  constructor(public nav: NavController) {
   }
 
   skipIntro() {

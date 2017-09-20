@@ -15,6 +15,9 @@ import { MyApp } from './app.component';
 
 // Pages
 import {
+  BlankPage,
+  FollowersPage,
+  FollowingPage,
   ForgotPasswordPage,
   HomePage,
   LoginPage,
@@ -51,6 +54,9 @@ export function createTranslateLoader(http: HttpClient) {
     // Application
     MyApp,
     // Pages
+    BlankPage,
+    FollowersPage,
+    FollowingPage,
     ForgotPasswordPage,
     HomePage,
     LoginPage,
@@ -89,7 +95,10 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    BlankPage,
     MyApp,
+    FollowersPage,
+    FollowingPage,
     ForgotPasswordPage,
     HomePage,
     LoginPage,

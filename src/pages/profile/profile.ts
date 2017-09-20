@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, SegmentButton, App, NavParams, LoadingController } from 'ionic-angular';
-import { SettingsPage } from '../settings/settings';
+import { SettingsPage, FollowersPage, FollowingPage } from '../';
 import { ProfileModel } from '../../models';
 import { ProfileService, StorageService } from '../../services';
 import 'rxjs/Rx';
@@ -32,11 +32,15 @@ export class ProfilePage {
   }
 
   goToFollowersList() {
-
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    this.app.getRootNav().push(FollowersPage);
   }
 
   goToFollowingList() {
-
+    // close the menu when clicking a link from the menu
+    this.menu.close();
+    this.app.getRootNav().push(FollowingPage);
   }
 
   updatePage() {
@@ -75,7 +79,6 @@ export class ProfilePage {
       .catch(error => {
 
       });
-
   }
 
   doRefresh(refresher) {
@@ -115,9 +118,7 @@ export class ProfilePage {
       .catch(error => {
 
       });
-
   }
-
 
   goToSettings() {
     // close the menu when clicking a link from the menu
