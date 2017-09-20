@@ -10,6 +10,10 @@ import { ProfileService, StorageService } from '../../services/index';
 export class FollowingPage {
   list: Array<UserModel> = [];
   constructor(public menu: MenuController, public navParams: NavParams, public profileService: ProfileService, public storage: StorageService) {
+    this.updateValues();
+  }
+
+  updateValues() {
     this.storage.get("auth.user")
       .then(o => {
         var FollowersPromisse = this.profileService.getProfileFollowing(o.uid)
@@ -17,6 +21,10 @@ export class FollowingPage {
             this.list = followers;
           });
       });
+  }
+
+  deleteItem(item) {
+    console.log(item);
   }
 
   ionViewDidEnter() {

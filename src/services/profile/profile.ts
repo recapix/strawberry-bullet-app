@@ -19,11 +19,11 @@ export class ProfileService {
 
   private handleError(error: any): Promise<any> {
     // for demo purposes only
-    console.error('An error occurred', error); 
+    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 
-  getProfileUser(uidProfile: string) : Promise<any> {
+  getProfileUser(uidProfile: string): Promise<any> {
     return new Promise<UserModel>((resolve, reject) => {
       this.db.object("/profile/" + uidProfile + "/user").subscribe(o => {
         resolve(o as UserModel);
@@ -42,7 +42,7 @@ export class ProfileService {
       });
     });
   }
-  
+
   getProfileFollowing(uidProfile: string) {
     return new Promise<UserModel[]>((resolve, reject) => {
       this.db.list("/profile/" + uidProfile + "/following").subscribe(o => {
@@ -52,7 +52,7 @@ export class ProfileService {
       });
     });
   }
- 
+
   getProfilePosts(uidProfile: string) {
     return new Promise<ProfilePostModel[]>((resolve, reject) => {
       this.db.list("/profile/" + uidProfile + "/posts").subscribe(o => {
@@ -62,5 +62,18 @@ export class ProfileService {
       });
     });
   }
+
+  deleteProfileFollowing(uidProfile: string, postId) {
+    return new Promise<void>((resolve, reject) => {
+      this.db.object("/profile/" + uidProfile + "/following/" + postId).remove()
+        .then(o => {
+          resolve()
+        })
+        .catch(e => {
+          reject(e);
+        });
+    });
+  }
+
 
 }
