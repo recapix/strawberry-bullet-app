@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { MenuController, NavParams } from 'ionic-angular';
-import { UserModel } from '../../models';
-import { ProfileService, StorageService } from '../../services/index';
+import { Component } from "@angular/core";
+import { MenuController, NavParams } from "ionic-angular";
+import { UserModel } from "../../models";
+import { ProfileService, StorageService } from "../../services/index";
 
 @Component({
-  selector: 'followers-page',
-  templateUrl: 'followers.html'
+  selector: "followers-page",
+  templateUrl: "followers.html"
 })
 export class FollowersPage {
   list: Array<UserModel> = [];

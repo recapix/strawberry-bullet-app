@@ -9,11 +9,13 @@ import { ProfileService, StorageService } from '../../services/index';
 })
 export class FollowingPage {
   list: Array<UserModel> = [];
+
   constructor(public menu: MenuController, public navParams: NavParams, public profileService: ProfileService, public storage: StorageService) {
     this.updateValues();
   }
 
   updateValues() {
+    debugger;
     this.storage.get("auth.user")
       .then(o => {
         var FollowersPromisse = this.profileService.getProfileFollowing(o.uid)
@@ -24,7 +26,13 @@ export class FollowingPage {
   }
 
   deleteItem(item) {
-    console.log(item);
+    this.storage.get("auth.user")
+      .then(o => {
+        var FollowersPromisse = this.profileService.deleteProfileFollowing(o.uid, item.$key).then(()=>{
+            debugger;
+            this.updateValues();
+        });
+      });
   }
 
   ionViewDidEnter() {

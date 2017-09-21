@@ -1,13 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, Slides, AlertController } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Component, ViewChild } from "@angular/core";
+import { NavController, Slides, AlertController } from "ionic-angular";
+import { TranslateService } from "@ngx-translate/core";
+import { AngularFireAuth } from "angularfire2/auth";
 
 import { TabsNavigationPage, WalkthroughPage } from "../";
 
 @Component({
-    selector: 'blank-page',
-    templateUrl: 'blank.html'
+    selector: "blank-page",
+    templateUrl: "blank.html"
 })
 export class BlankPage {
     constructor(
