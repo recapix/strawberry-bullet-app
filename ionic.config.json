@@ -1,6 +1,6 @@
 {
   "name": "corn",
-  "app_id": "",
+  "app_id": "2b343f7e",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
