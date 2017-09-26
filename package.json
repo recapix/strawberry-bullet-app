@@ -33,7 +33,7 @@
         "@types/googlemaps": "^3.25.38",
         "angularfire2": "^4.0.0-rc.2",
         "bourbon": "^4.2.7",
-        "call-number": "https://github.com/Rohfosho/CordovaCall   NumberPlugin.git",
+        "call-number": "https://github.com/Rohfosho/CordovaCallNumberPlugin.git",
         "cordova-android": "^6.2.3",
         "cordova-ios": "~4.1.1",
         "cordova-plugin-console": "~1.0.4",
